@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import {
@@ -12,6 +13,7 @@ import {
   NUS_TS_LEGEND_2024,
   NUS_TS_LEGEND_2026,
   NUS_TS_LEGEND_DUKE_2023,
+  NUS_TS_LEGEND_DUKE_2026,
   NUS_TS_LEGEND_YALE_2023
 } from "../common";
 import {
@@ -37,6 +39,8 @@ const termsChangeCutoffDate2023 = "2023-08-01";
 const newAppointmentCutoffDate2024 = "2024-01-01";
 // effective date for new legend 2026
 const newLegend2026 = "2026-01-01";
+// effective date for new DUKE legend 2026
+const newLegendDuke2026 = "2026-06-08";
 
 // flags to calssify transcript type
 let isUG;
@@ -1825,7 +1829,13 @@ const Template = ({ certificate }) => {
       : null;
   let legend;
   if (jsonData.issuedOn >= termsChangeCutoffDate2023) {
-      if (isDuke) legend = NUS_TS_LEGEND_DUKE_2023;
+      if (isDuke) {
+          if (jsonData.issuedOn >= newLegendDuke2026) {
+              legend = NUS_TS_LEGEND_DUKE_2026;
+          } else {
+              legend = NUS_TS_LEGEND_DUKE_2023;
+          }
+      }
       else if (isDegreeScroll ? (isYaleNUS && isYALENUSDegree) : isYaleNUS) legend = NUS_TS_LEGEND_YALE_2023;
       else if (jsonData.issuedOn >= newAppointmentCutoffDate2024) {
           if (jsonData.issuedOn >= newLegend2026) {
