@@ -40,7 +40,7 @@ const newAppointmentCutoffDate2024 = "2024-01-01";
 // effective date for new legend 2026
 const newLegend2026 = "2026-01-01";
 // effective date for new DUKE legend 2026
-const newLegendDuke2026 = "2026-06-08";
+const newLegendDuke2026 = "2026-06-30";
 
 // flags to calssify transcript type
 let isUG;
